@@ -1,0 +1,111 @@
+def eh_simetrica():
+    
+    matriz=criacao_matriz()
+    if not matriz:
+        return True, matriz
+    # Verifica se a matriz é quadrada
+    if len(matriz) != len(matriz[0]):
+        return False, matriz
+
+    # Verifica se os elementos são iguais aos seus correspondentes pela diagonal principal
+    for i in range(len(matriz)):
+        for j in range(len(matriz[0])):
+            if matriz[i][j] != matriz[j][i]:
+                return False, matriz
+    return True, matriz
+
+def conta_pares():
+  
+  matriz=criacao_matriz()
+  contador=0
+  for i in range(len(matriz)):
+    for j in range(len(matriz[0])):
+      if matriz[i][j]%2==0:
+        contador +=1
+  return contador, matriz
+
+def media_coluna():
+  
+  indice=int(input("Digite o índice da coluna: "))
+  matriz=criacao_matriz()
+  somatorio=0
+  for i in matriz:
+    somatorio+=i[indice]
+  media=somatorio/len(matriz)
+  return '{:.2f}'.format(media)
+
+def pior_volta():
+
+  matriz=criacao_matriz()
+  menor_anterior=max(matriz[0])
+  for i in range(6):
+    menor_atual=max(matriz[i])
+    if menor_atual>=menor_anterior:
+      menor_anterior=menor_atual
+  return menor_anterior
+
+def diagonal_principal():
+
+  matriz=criacao_matriz()
+  lista=[]
+  for i in range(len(matriz)):
+    for j in range(len(matriz[0])):
+      if i==j:
+        lista.append(matriz[i][j])
+  return lista
+
+def transpor_matriz():
+  
+  matriz=criacao_matriz()
+  matrizt=[]
+  for j in range(len(matriz[0])):
+    coluna=[]
+    for i in range(len(matriz)):
+      coluna.append(matriz[i][j])
+    matrizt.append(coluna)
+  return matrizt
+
+def criacao_matriz():
+    
+    linha=int(input("Insira o número de linhas:"))
+    coluna=int(input("Insira o número de colunas:"))
+    matriz=[]
+    for i in range(linha):
+      linha1=[]
+      for j in range(coluna):
+        l=int(input("Digite o elemento ({i+1}, {j+1}): "))
+        linha1.append(l)
+      matriz.append(linha1)
+    return matriz
+
+def main():
+
+  opcao=input("Insira o numero do problema a ser resolvido: ")
+
+  if opcao=='1':
+    #Resolvendo Problema 1
+    print("problema 1: Verificando se uma matriz é simétrica: ")
+    print("A simetria da matriz é :", eh_simetrica())
+  elif opcao=='2':
+    #Resolvendo Problema 2
+    print("problema 2: Contando a quantidade de pares: ")
+    print("A quantidade de pares é :", conta_pares())
+  elif opcao=='3':
+    #Resolvendo Problema 3
+    print("problema 3: Média da coluna: ")
+    print("A média da coluna é :", media_coluna())
+  elif opcao=='4':
+    #Resolvendo Problema 4
+    print("problema 4: Pior volta: ")
+    print("A pior volta foi :", pior_volta())
+  elif opcao=='5':
+    #Resolvendo Problema 5
+    print("problema 5: Diagonal principal de uma matriz: ")
+    print("A diagonal principal é :", diagonal_principal())
+  elif opcao=='6':
+    #Resolvendo Problema 6
+    print("problema 6: Matriz transposta: ")
+    print("A matriz transposta é :", transpor_matriz())
+
+if __name__ == "__main__":
+    main()  
